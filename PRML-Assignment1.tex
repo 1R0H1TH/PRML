@@ -1,121 +1,64 @@
-%++++++++++++++++++++++++++++++++++++++++
-% Don't modify this section unless you know what you're doing!
-\documentclass[letterpaper,12pt]{article}
-\usepackage{tabularx} % extra features for tabular environment
-\usepackage{amsmath}  % improve math presentation
-\usepackage{graphicx} % takes care of graphic including machinery
-\usepackage{pgfplots}
-\pgfplotsset{width=10cm,compat=1.9}
-\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
-\usepackage{cite} % takes care of citations
-\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
-\usepackage{tikz}
-\usepackage{xcolor}
+\documentclass{article}                          
+\usepackage{siunitx}                              
+\usepackage{setspace}  
 \usepackage{gensymb}
-\usepackage{listings}
-\usepackage{url}
-\usepackage{tikz}
-\usepackage{tzplot}
-\hypersetup{
-	colorlinks=true,       % false: boxed links; true: colored links
-	linkcolor=blue,        % color of internal links
-	citecolor=blue,        % color of links to bibliography
-	filecolor=magenta,     % color of file links
-	urlcolor=blue         
-}
-%++++++++++++++++++++++++++++++++++++++++
-
+\usepackage{xcolor}            
+\usepackage{caption}   
+%\usepackage{subcaption}     
+%\doublespacing
+\singlespacing
+\usepackage[none]{hyphenat}   
+\usepackage{amssymb}
+%\usepackage{relsize}
+\usepackage[cmex10]{amsmath}           
+\usepackage{mathtools}  
+\usepackage{amsmath}
+\usepackage{commath}
+%\usepackage{amsthm}
+%\interdisplaylinepenalty=2500 
+%%\savesymbol{iint}                     
+\usepackage{txfonts}
+%\restoresymbol{TXF}{iint}
+%\usepackage{wasysym}                           
+\usepackage{amsthm}                        
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\let\vec\mathbf{}
+%\usepackage{stfloats}
+\usepackage{float}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}                        
+%\usepackage{xtab}                  
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{titling}
+%\usepackage{fulbigskip}
+\usepackage{tikz}                                 
+\usepackage{graphicx}
+%\usepackage{algorithm}
+\usepackage{amssymb}                          
+%\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{mathtools}
+%\usepackage{eenrc}
+%\usepackage[framemethod=tikz]{mdframed}    
+%\usepackage{listings}   
+\usepackage{listings}       
+\usepackage[latin1]{inputenc}   
+%% \usepackage{color}
 \begin{document}
-\pagecolor{white}
-\color{black}
-\title{PRML - Assignment 1}
-\author{Rohith Ingilela, EE19BTECH11005}
-\date{\today}
+\title{CLASS 9\\11. CONSTRUCTIONS}
+\date{}
 \maketitle
-
-
-
-\section{Problem Statement}
-Construct a triangle, given its base, a base angle and sum
-of other two sides.
-Given the base BC, a base angle, say ∠B and the sum AB + AC of the other two sides of a triangle ABC, you are required to construct it.
-\begin{center}
-\begin{tikzpicture}
-% triangle
-\tzcoors(0,0)(B){$B$}[180](4,0)(C){$C$}[-45](3.5,3)(A){$A$}[45];
-\tzpolygon(A){}[b](B){}[r](C){}[sloped,a](A);
-% angle marks
-\tzanglemark(A)(B)(C){}
-\end{tikzpicture}
-\end{center}
-
-\section{Solution}
-
-Using the cosine formula in $\triangle ABC$,
-\begin{equation}
-    b^2 = a^2 + c^2 - 2ac Cos B    
-\end{equation}
-\begin{equation}
-    (b + c)(b - c) = a^2 - 2ac Cos B
-\end{equation}
-\begin{equation}
-    or, K(b - c) = a^2 - 2ac Cos B
-\end{equation}
-\begin{equation}
-    \text{where }  K = b + c
-\end{equation}
-\begin{equation}
-    Kb + c (2aCosB - K) = a^2
-\end{equation}
-
-    Writing equations (4) and (5) into matrix form
-
-\begin{equation}
-    \begin{pmatrix}
-     1 &  1 \\
-     K & 2aCosB - K
-    \end{pmatrix}
-    \begin{pmatrix}
-     b \\
-     c
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-     K \\
-     a^2
-    \end{pmatrix}
-\end{equation} \\
-\clearpage
-   \\   
-Solve matrix (6) for 'c'
-
-The coordinates of $\triangle ABC$ can then be expressed as
-    \begin{equation}
-        \Vec{A} = c
-        \begin{pmatrix}
-            cos B \\
-            sin B
-        \end{pmatrix},
-        \Vec{B} =
-        \begin{pmatrix}
-            0 \\
-            0
-        \end{pmatrix},
-        \Vec{C} = 
-        \begin{pmatrix}
-            a \\
-            0
-        \end{pmatrix}
-    \end{equation}
-\section{Code}
-\url{https://github.com/1R0H1TH/PRML/blob/main/PRML_Assignment1.py}
-\section{Plot}
-The above code plots Fig.\ref{fig:direction_vectors}.
-\begin{figure}[!ht]
-\centering
-\includegraphics[width=0.75\columnwidth]{Figure_1.png}
-\caption{Triangle with BC=7; $\angle$B = 75$^{\circ}$; AB + BC = 13}
-\label{fig:direction_vectors}
-\end{figure}
-
+\section{EXERCISE 4}
+Construct each of the following and give justification :
+\begin{enumerate}
+\item A triangle if its perimeter is 10.4 cm and two angles are 45$^{\circ}$ and 120$^{\circ}$.
+\item A triangle $PQR$ given that $QR$ = 3cm, $\angle PQR = 45^{\circ}$ and $QP - PR = 2 cm$.
+\item A right triangle when one side is 3.5 cm and sum of other sides and the hypotenuse
+is 5.5 cm.
+\item An equilateral triangle if its altitude is 3.2 cm.
+\item A rhombus whose diagonals are 4 cm and 6 cm in lengths.
+\end{enumerate}
 \end{document}
