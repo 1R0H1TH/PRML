@@ -1,0 +1,165 @@
+%++++++++++++++++++++++++++++++++++++++++
+% Don't modify this section unless you know what you're doing!
+\documentclass[letterpaper,12pt]{article}
+\usepackage{tabularx} % extra features for tabular environment
+\usepackage{amsmath}  % improve math presentation
+\usepackage{amssymb}
+\usepackage{graphicx} % takes care of graphic including machinery
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+\usepackage[margin=1in,letterpaper]{geometry} % decreases margins
+\usepackage{cite} % takes care of citations
+\usepackage[final]{hyperref} % adds hyper links inside the generated pdf file
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{tzplot}
+\hypersetup{
+	colorlinks=true,       % false: boxed links; true: colored links
+	linkcolor=blue,        % color of internal links
+	citecolor=blue,        % color of links to bibliography
+	filecolor=magenta,     % color of file links
+	urlcolor=blue         
+}
+%++++++++++++++++++++++++++++++++++++++++
+
+\title{PRML-Assignment 2}
+\author{Rohith Ingilela,  EE19BTECH11005 }
+\date{April 8, 2023}
+
+\begin{document}
+
+\maketitle
+
+\section{Problem Statement}
+
+In Figure \ref{fig:fig1}, $ABCD$ is a parallelogram, $AE \perp DC$
+and $CF \perp AD$. If $AB = 16 \hspace{0.1cm} cm$, $AE = 8 \hspace{0.1cm} cm$ and
+$CF = 10 \hspace{0.1cm} cm$, find $AD$.
+
+\begin{figure}[!ht]
+\centering
+
+\begin{tikzpicture}
+% triangle
+\tzcoors(0,0)(D){$D$}[180](5,0)(C){$C$}[-45](6,3)(B){$B$}[45](1,3)(A){$A$}[180](1,0)(E){$E$}[-90](0.5,1.5)(F){$F$}[180];
+\tzpolygon(A){}(B){}(C){}(D){};
+\tzpolygon(A){}(E){};
+\tzpolygon(C){}(F){};
+% angle marks
+\tzrightanglemark(D)(F)(C){}
+\tzrightanglemark(A)(E)(C){}
+\end{tikzpicture}
+
+\caption{Parallelogram ABCD}
+\label{fig:fig1}
+\end{figure}
+\section{Solution}
+Let $A = \begin{pmatrix} x \\ 8 \end{pmatrix}$, $B = \begin{pmatrix} x + 16 \\ 8 \end{pmatrix}$, $C = \begin{pmatrix} 16 \\ 0 \end{pmatrix}$, $D = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$, $E = \begin{pmatrix} x \\ 0 \end{pmatrix}$
+
+\begin{center}
+    $Ar(ABCD) = \|AD\|\times\|CF\| = \|AE\|\times\|CD\|$ \\
+\end{center}
+\begin{center}
+    $\|AD\| \times 10 = 8 \times 16 = 128$
+\end{center}
+\begin{equation}
+    \|AD\| = 12.8 \text{ } cm
+\end{equation}
+\begin{center}
+    $\|AD\| = \|A - D\| = 12.8 \text{ } cm$
+\end{center}
+
+\clearpage
+
+\begin{center}
+    $\|A\| = 12.8$
+\end{center}
+\begin{center}
+    $x^2 + 8^2 = 12.8^2$
+\end{center}
+\begin{center}
+    $x \approx 10$
+\end{center}
+\begin{equation}
+    A = \begin{pmatrix} 10 \\ 8 \end{pmatrix}
+\end{equation}
+
+Given,
+\begin{center}
+    $\|CF\| = \|F - C\| = 10$
+\end{center}
+Squaring on both sides,
+\begin{center}
+    $F^TF - 2C^TF + C^TC = 100$
+\end{center}
+\begin{equation}
+    2C^TF - F^TF = 156 \hspace{0.6cm} (\because C^TC = 256)
+\end{equation}
+
+From Figure \ref{fig:fig1}, $DF \perp CF$
+\begin{center}
+    $(F-D)^T(C-F) = 0$
+\end{center}
+\begin{equation}
+    C^TF - F^TF = 0
+\end{equation}
+From (3) and (4),
+\begin{center}
+    $C^TF = 156$
+\end{center}
+\begin{equation}
+    \begin{pmatrix} 16 & 0 \end{pmatrix}F = 156
+\end{equation}
+Equation of line passing through AD:
+\begin{center}
+    Direction vector, $m = \begin{pmatrix} 10 \\ 8 \end{pmatrix}$
+\end{center}
+Normal vector,
+\begin{center}
+    $\implies n = \begin{pmatrix} -8 \\ 10 \end{pmatrix}$
+\end{center}
+Equation of line passing through D with normal vector n is
+\begin{center}
+    $n^T(x - D) = 0$
+\end{center}
+\begin{center}
+    $\implies \begin{pmatrix} -8 & 10 \end{pmatrix}x = 0$
+\end{center}
+Since F passes through AD,
+\begin{equation}
+    \begin{pmatrix} -8 & 10 \end{pmatrix}F = 0
+\end{equation}
+
+\clearpage
+
+From (5) and (6),
+\begin{center}
+    $\begin{pmatrix}16 & 0 \\ -8 & 10 \end{pmatrix}F = \begin{pmatrix} 156 \\ 0 \end{pmatrix}$
+\end{center}
+\begin{center}
+    $F = \begin{pmatrix}16 & 0 \\ -8 & 10 \end{pmatrix}^{-1}\begin{pmatrix} 156 \\ 0 \end{pmatrix}$
+\end{center}
+\begin{center}
+    $F = \frac{1}{160}\begin{pmatrix}10 & 0 \\ 8 & 16 \end{pmatrix}\begin{pmatrix} 156 \\ 0 \end{pmatrix}$
+\end{center}
+\begin{equation}
+    F = \begin{pmatrix}9.75 \\ 7.8\end{pmatrix}
+\end{equation}
+
+\section{Code}
+\url{https://github.com/1R0H1TH/PRML/blob/main/9.9.2.1/9.9.2.1.py}
+
+\section{Plot}
+The above code plots Figure \ref{fig:fig2}.
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=0.75\columnwidth]{Figure_1.png}
+\caption{Parallelogram ABCD}
+\label{fig:fig2}
+\end{figure}.
+
+
+\end{document}
