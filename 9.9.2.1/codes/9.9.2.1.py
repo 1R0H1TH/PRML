@@ -15,8 +15,7 @@ F = np.linalg.solve(X, O)
     
 def plt_pnt(A, label=''):
 	plt.plot(A[0], A[1], 'o')
-	if label != '':
-		plt.text(A[0], A[1], label)
+	if label != '': plt.text(A[0], A[1], label)
 		
 def plt_line(A, B, labelA='', labelB=''):
     plt.plot([A[0],B[0]], [A[1],B[1]], label=labelA+labelB)
