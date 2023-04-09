@@ -16,6 +16,7 @@
 \usepackage{url}
 \usepackage{tikz}
 \usepackage{tzplot}
+\renewcommand{\vec}[1]{\boldsymbol{#1}}
 \hypersetup{
 	colorlinks=true,       % false: boxed links; true: colored links
 	linkcolor=blue,        % color of internal links
@@ -35,9 +36,9 @@
 
 \section{Problem Statement}
 
-In Figure \ref{fig:fig1}, $ABCD$ is a parallelogram, $AE \perp DC$
+In Figure \ref*{fig:fig1}, $ABCD$ is a parallelogram, $AE \perp DC$
 and $CF \perp AD$. If $AB = 16 \hspace{0.1cm} cm$, $AE = 8 \hspace{0.1cm} cm$ and
-$CF = 10 \hspace{0.1cm} cm$, find $AD$.
+$CF = 10 \hspace{0.1cm} cm$, find $AD$. Construct the paralellogram.
 
 \begin{figure}[!ht]
 \centering
@@ -57,8 +58,27 @@ $CF = 10 \hspace{0.1cm} cm$, find $AD$.
 \label{fig:fig1}
 \end{figure}
 \section{Solution}
-Let $A = \begin{pmatrix} x \\ 8 \end{pmatrix}$, $B = \begin{pmatrix} x + 16 \\ 8 \end{pmatrix}$, $C = \begin{pmatrix} 16 \\ 0 \end{pmatrix}$, $D = \begin{pmatrix} 0 \\ 0 \end{pmatrix}$, $E = \begin{pmatrix} x \\ 0 \end{pmatrix}$
 
+Given,
+\begin{equation}
+    AE \perp DC \implies (\Vec{A} - \Vec{E})^T (\Vec{C} - \Vec{D}) = 0
+\end{equation}
+\begin{equation}
+    CF \perp AD \implies (\Vec{C} - \Vec{F})^T (\Vec{A} - \Vec{D}) = 0
+\end{equation}
+\begin{equation}
+    \|AB\| = \|\Vec{A} - \Vec{B}\| = 16 cm
+\end{equation}
+\begin{equation}
+    \|AE\| = \|\Vec{A} - \Vec{E}\| = 8 cm
+\end{equation}
+\begin{equation}
+    \|CF\| = \|\Vec{C} - \Vec{F}\| = 10 cm
+\end{equation}
+To find: $\|AD\|$
+
+\clearpage
+We know that,
 \begin{center}
     $Ar(ABCD) = \|AD\|\times\|CF\| = \|AE\|\times\|CD\|$ \\
 \end{center}
@@ -69,13 +89,14 @@ Let $A = \begin{pmatrix} x \\ 8 \end{pmatrix}$, $B = \begin{pmatrix} x + 16 \\ 8
     \|AD\| = 12.8 \text{ } cm
 \end{equation}
 \begin{center}
-    $\|AD\| = \|A - D\| = 12.8 \text{ } cm$
+    $\|AD\| = \|\Vec{A} - \Vec{D}\| = 12.8 \text{ } cm$
 \end{center}
 
-\clearpage
+To find: $\Vec{A}$ \\ \\
+Let $\Vec{A} = \begin{pmatrix} x \\ 8 \end{pmatrix}$
 
 \begin{center}
-    $\|A\| = 12.8$
+    $\|\Vec{A}\| = 12.8$
 \end{center}
 \begin{center}
     $x^2 + 8^2 = 12.8^2$
@@ -84,70 +105,75 @@ Let $A = \begin{pmatrix} x \\ 8 \end{pmatrix}$, $B = \begin{pmatrix} x + 16 \\ 8
     x \approx 10
 \end{equation}
 \begin{equation}
-    A = \begin{pmatrix} 10 \\ 8 \end{pmatrix}
+    \Vec{A} = \begin{pmatrix} 10 \\ 8 \end{pmatrix}
 \end{equation}
-
+To find: $\Vec{F}$ \\ \\
 Given,
 \begin{center}
-    $\|CF\| = \|F - C\| = 10$
+    $\|CF\| = \|\Vec{F} - \Vec{C}\| = 10$
 \end{center}
 Squaring on both sides,
 \begin{center}
-    $F^TF - 2C^TF + C^TC = 100$
+    $\Vec{F}^T\Vec{F} - 2\Vec{C}^T\Vec{F} + \Vec{C}^T\Vec{C} = 100$
 \end{center}
 \begin{equation}
-    2C^TF - F^TF = 156 \hspace{0.6cm} (\because C^TC = 256)
+    2\Vec{C}^T\Vec{F} - \Vec{F}^T\Vec{F} = 156 \hspace{0.6cm} (\because \Vec{C}^T\Vec{C} = 256)
+\label{eqn1}
 \end{equation}
 
 From Figure \ref{fig:fig1}, $DF \perp CF$
 \begin{center}
-    $(F-D)^T(C-F) = 0$
+    $(\Vec{F}-\Vec{D})^T(\Vec{C}-\Vec{F}) = 0$
 \end{center}
 \begin{equation}
-    C^TF - F^TF = 0
+    \Vec{C}^T\Vec{F} - \Vec{F}^T\Vec{F} = 0
+\label{eqn2}
 \end{equation}
-From (4) and (5),
-\begin{center}
-    $C^TF = 156$
-\end{center}
+From (\ref*{eqn1}) and (\ref*{eqn2}),
 \begin{equation}
-    \begin{pmatrix} 16 & 0 \end{pmatrix}F = 156
-\end{equation}
-Equation of line passing through AD:
-\begin{center}
-    Direction vector, $m = \begin{pmatrix} 10 \\ 8 \end{pmatrix}$
-\end{center}
-Normal vector,
-\begin{center}
-    $\implies n = \begin{pmatrix} -8 \\ 10 \end{pmatrix}$
-\end{center}
-Equation of line passing through D with normal vector n is
-\begin{center}
-    $n^T(x - D) = 0$
-\end{center}
-\begin{center}
-    $\implies \begin{pmatrix} -8 & 10 \end{pmatrix}x = 0$
-\end{center}
-Since F passes through AD,
-\begin{equation}
-    \begin{pmatrix} -8 & 10 \end{pmatrix}F = 0
+    \Vec{C}^T\Vec{F} = 156
+\label{eqn3}
 \end{equation}
 
 \clearpage
 
-From (6) and (7),
+Equation of line passing through AD:
 \begin{center}
-    $\begin{pmatrix}16 & 0 \\ -8 & 10 \end{pmatrix}F = \begin{pmatrix} 156 \\ 0 \end{pmatrix}$
+    Direction vector, $\Vec{m} = \begin{pmatrix} 10 \\ 8 \end{pmatrix}$
+\end{center}
+Normal vector,
+\begin{center}
+    $\implies \Vec{n} = \begin{pmatrix} -8 \\ 10 \end{pmatrix}$
+\end{center}
+Equation of line passing through D with normal vector n is
+\begin{center}
+    $\Vec{n}^T(\Vec{x} - \Vec{D}) = 0$
+\end{center}
+Since $\Vec{F}$ passes through AD,
+\begin{equation}
+    \Vec{n}^T\Vec{F} = 0
+\label{eqn4}
+\end{equation}
+
+From (\ref*{eqn3}) and (\ref*{eqn4}),
+\begin{center}
+    $\begin{pmatrix}\Vec{C}^T \\ \Vec{n}^T \end{pmatrix}\Vec{F} = \begin{pmatrix} 156 \\ 0 \end{pmatrix}$
+\end{center}
+Substituting values of $\Vec{C}$ and $\Vec{n}$
+\begin{center}
+    $\begin{pmatrix}16 & 0 \\ -8 & 10 \end{pmatrix}\Vec{F} = \begin{pmatrix} 156 \\ 0 \end{pmatrix}$
 \end{center}
 \begin{center}
-    $F = \begin{pmatrix}16 & 0 \\ -8 & 10 \end{pmatrix}^{-1}\begin{pmatrix} 156 \\ 0 \end{pmatrix}$
+    $\Vec{F} = \begin{pmatrix}16 & 0 \\ -8 & 10 \end{pmatrix}^{-1}\begin{pmatrix} 156 \\ 0 \end{pmatrix}$
 \end{center}
 \begin{center}
-    $F = \frac{1}{160}\begin{pmatrix}10 & 0 \\ 8 & 16 \end{pmatrix}\begin{pmatrix} 156 \\ 0 \end{pmatrix}$
+    $\Vec{F} = \frac{1}{160}\begin{pmatrix}10 & 0 \\ 8 & 16 \end{pmatrix}\begin{pmatrix} 156 \\ 0 \end{pmatrix}$
 \end{center}
 \begin{equation}
-    F = \begin{pmatrix}9.75 \\ 7.8\end{pmatrix}
+    \Vec{F} = \begin{pmatrix}9.75 \\ 7.8\end{pmatrix}
 \end{equation}
+
+\clearpage
 
 \section{Code}
 \url{https://github.com/1R0H1TH/PRML/blob/main/9.9.2.1/codes/9.9.2.1.py}
