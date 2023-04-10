@@ -85,89 +85,53 @@ We know that,
 \begin{center}
     $\|AD\| \times 10 = 8 \times 16 = 128$
 \end{center}
-\begin{equation}
-    \|AD\| = 12.8 \text{ } cm
-\end{equation}
 \begin{center}
-    $\|AD\| = \|\Vec{A} - \Vec{D}\| = 12.8 \text{ } cm$
+    $\|AD\| = 12.8 \text{ } cm$
 \end{center}
+\begin{equation}
+\nonumber
+    \|AD\| = \|\Vec{A} - \Vec{D}\| = \|\Vec{A}\| = 12.8 \text{ } cm
+\end{equation}
 
 To find: $\Vec{A}$ \\ \\
-Let $\Vec{A} = \begin{pmatrix} x \\ 8 \end{pmatrix}$
-
+Let $\theta = \angle ADE$
 \begin{center}
-    $\|\Vec{A}\| = 12.8$
-\end{center}
-\begin{center}
-    $x^2 + 8^2 = 12.8^2$
+    $sin \theta = \frac{\|AE\|}{\|AD\|}$
 \end{center}
 \begin{equation}
-    x \approx 10
+    \theta = sin^-1\left(\frac{\|AE\|}{\|AD\|}\right)
+\label{eqntheta}
 \end{equation}
 \begin{equation}
-    \Vec{A} = \begin{pmatrix} 10 \\ 8 \end{pmatrix}
+    \Vec{A} = \|AD\|\begin{pmatrix} cos \theta \\ sin \theta \end{pmatrix}
+\label{eqnA}
+\end{equation}
+Substituting $\|AE\|$ and $\|AD\|$ in (\ref*{eqntheta}) and (\ref*{eqnA})
+\begin{equation}
+    \Vec{A} \approx \begin{pmatrix} 10 \\ 8 \end{pmatrix}
 \end{equation}
 To find: $\Vec{F}$ \\ \\
-Given,
-\begin{center}
-    $\|CF\| = \|\Vec{F} - \Vec{C}\| = 10$
-\end{center}
-Squaring on both sides,
-\begin{center}
-    $\Vec{F}^T\Vec{F} - 2\Vec{C}^T\Vec{F} + \Vec{C}^T\Vec{C} = 100$
-\end{center}
-\begin{equation}
-    2\Vec{C}^T\Vec{F} - \Vec{F}^T\Vec{F} = 156 \hspace{0.6cm} (\because \Vec{C}^T\Vec{C} = 256)
-\label{eqn1}
-\end{equation}
-
-From Figure \ref{fig:fig1}, $DF \perp CF$
-\begin{center}
-    $(\Vec{F}-\Vec{D})^T(\Vec{C}-\Vec{F}) = 0$
-\end{center}
-\begin{equation}
-    \Vec{C}^T\Vec{F} - \Vec{F}^T\Vec{F} = 0
-\label{eqn2}
-\end{equation}
-From (\ref*{eqn1}) and (\ref*{eqn2}),
-\begin{equation}
-    \Vec{C}^T\Vec{F} = 156
-\label{eqn3}
-\end{equation}
-
-\clearpage
-
 Equation of line passing through AD:
 \begin{center}
     Direction vector, $\Vec{m} = \begin{pmatrix} 10 \\ 8 \end{pmatrix}$
 \end{center}
 Normal vector,
 \begin{center}
-    $\implies \Vec{n} = \begin{pmatrix} -8 \\ 10 \end{pmatrix}$
+    $\implies \Vec{n} = \begin{pmatrix} 8 \\ -10 \end{pmatrix}$
 \end{center}
 Equation of line passing through D with normal vector n is
 \begin{center}
     $\Vec{n}^T(\Vec{x} - \Vec{D}) = 0$
 \end{center}
-Since $\Vec{F}$ passes through AD,
 \begin{equation}
-    \Vec{n}^T\Vec{F} = 0
-\label{eqn4}
+    \Vec{n}^T\Vec{x} = 0
 \end{equation}
-
-From (\ref*{eqn3}) and (\ref*{eqn4}),
+Since $\Vec{F}$ is foot of perpendicular from $\Vec{C}$ to line $\Vec{AD}$
 \begin{center}
-    $\begin{pmatrix}\Vec{C}^T \\ \Vec{n}^T \end{pmatrix}\Vec{F} = \begin{pmatrix} 156 \\ 0 \end{pmatrix}$
-\end{center}
-Substituting values of $\Vec{C}$ and $\Vec{n}$
-\begin{center}
-    $\begin{pmatrix}16 & 0 \\ -8 & 10 \end{pmatrix}\Vec{F} = \begin{pmatrix} 156 \\ 0 \end{pmatrix}$
+    $\begin{pmatrix}m & n\end{pmatrix}^T\Vec{F} = \begin{pmatrix} m^TC \\ 0 \end{pmatrix}$
 \end{center}
 \begin{center}
-    $\Vec{F} = \begin{pmatrix}16 & 0 \\ -8 & 10 \end{pmatrix}^{-1}\begin{pmatrix} 156 \\ 0 \end{pmatrix}$
-\end{center}
-\begin{center}
-    $\Vec{F} = \frac{1}{160}\begin{pmatrix}10 & 0 \\ 8 & 16 \end{pmatrix}\begin{pmatrix} 156 \\ 0 \end{pmatrix}$
+    $\Vec{F} = \begin{pmatrix}10 & 8 \\ 8 & -10 \end{pmatrix}^{-1}\begin{pmatrix} 160 \\ 0 \end{pmatrix}$
 \end{center}
 \begin{equation}
     \Vec{F} = \begin{pmatrix}9.75 \\ 7.8\end{pmatrix}

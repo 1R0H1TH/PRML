@@ -1,17 +1,32 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-A = np.array([np.sqrt(99.84), 8])
+Omat = np.array([[0, 1], [-1, 0]])
+
+def line_through(A, B):
+    m = B-A
+    n = Omat@m
+    return n, n.T@B
+
+def foot_of_perp(n, c, P):
+    m = Omat@n
+    X = np.array([m, n])
+    O = np.array([m.T@P, c])
+    return np.linalg.solve(X, O)
+
+AE = 8
+AD = 12.8
+
+theta = np.arcsin(AE/AD)
+
+A = AD * np.array([np.cos(theta), np.sin(theta)])
 B = np.array([A[0] + 16, 8])
 C = np.array([16, 0])
 D = np.array([ 0, 0])
 E = np.array([A[0], 0])
 
-Omat = np.array([[0, 1], [-1, 0]])
-X = np.vstack((C, A@Omat))
-O = np.array([156, 0])
-
-F = np.linalg.solve(X, O)
+n,c = line_through(A, D)
+F = foot_of_perp(n, c, C)
     
 def plt_pnt(A, label=''):
 	plt.plot(A[0], A[1], 'o')
