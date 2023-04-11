@@ -4,6 +4,7 @@
 \usepackage{tabularx} % extra features for tabular environment
 \usepackage{amsmath}  % improve math presentation
 \usepackage{amssymb}
+\usepackage{multirow}
 \usepackage{graphicx} % takes care of graphic including machinery
 \usepackage{pgfplots}
 \pgfplotsset{width=10cm,compat=1.9}
@@ -60,52 +61,64 @@ $CF = 10 \hspace{0.1cm} cm$, find $AD$. Construct the paralellogram.
 \section{Solution}
 
 Given,
-\begin{equation}
-    AE \perp DC \implies (\Vec{A} - \Vec{E})^T (\Vec{C} - \Vec{D}) = 0
-\end{equation}
-\begin{equation}
-    CF \perp AD \implies (\Vec{C} - \Vec{F})^T (\Vec{A} - \Vec{D}) = 0
-\end{equation}
-\begin{equation}
-    \|AB\| = \|\Vec{A} - \Vec{B}\| = 16 cm
-\end{equation}
-\begin{equation}
-    \|AE\| = \|\Vec{A} - \Vec{E}\| = 8 cm
-\end{equation}
-\begin{equation}
-    \|CF\| = \|\Vec{C} - \Vec{F}\| = 10 cm
-\end{equation}
+
+\setlength{\arrayrulewidth}{0.5mm}
+\setlength{\tabcolsep}{30pt}
+\setlength\extrarowheight{10pt}
+
+\begin{center}
+\begin{tabular}{||c|c||} 
+ \hline
+ \hline
+ \textbf{LHS} & \textbf{RHS} \\
+ \hline
+ $\Vec{A}-\Vec{B}$ & $\Vec{C}-\Vec{D}$ \\
+ \hline
+ $(\Vec{A} - \Vec{E})^T (\Vec{C} - \Vec{D})$ & 0 \\
+ \hline
+ $(\Vec{C} - \Vec{F})^T (\Vec{A} - \Vec{D})$ & 0 \\
+ \hline
+ $\|\Vec{A} - \Vec{B}\|$ & 16 cm \\
+ \hline
+  $\|\Vec{A} - \Vec{E}\|$ & 8 cm \\
+ \hline
+ $\|\Vec{C} - \Vec{F}\|$ & 10 cm \\
+ \hline
+ \hline
+\end{tabular}
+\end{center}
 
 \clearpage
 
-To find: $\|AD\|$
+To find: $\|AD\|$ \\
 
 We know that,
 \begin{center}
-    $Ar(ABCD) = \|AD\|\times\|CF\| = \|AE\|\times\|CD\|$ \\
+    $Ar(ABCD) = \|\Vec{A}-\Vec{D}\|\times\|\Vec{C}-\Vec{F}\| = \|\Vec{A}-\Vec{E}\|\times\|\Vec{C}-\Vec{D}\|$ \\
 \end{center}
 \begin{center}
-    $\|AD\| \times 10 = 8 \times 16 = 128$
+    $\|\Vec{A}-\Vec{D}\| \times 10 = 8 \times 16 = 128$
 \end{center}
 \begin{center}
-    $\|AD\| = 12.8 \text{ } cm$
+    $\|\Vec{A}-\Vec{D}\| = 12.8 \text{ } cm$
 \end{center}
 \begin{equation}
 \nonumber
-    \|AD\| = \|\Vec{A} - \Vec{D}\| = \|\Vec{A}\| = 12.8 \text{ } cm
+    \|\Vec{A} - \Vec{D}\| = \|\Vec{A}\| = 12.8 \text{ } cm
 \end{equation}
 
-To find: $\Vec{A}$ \\ \\
+To find: $\Vec{A}$ \\
+
 Let $\theta = \angle ADE$
 \begin{center}
-    $sin \theta = \frac{\|AE\|}{\|AD\|}$
+    $\sin \theta = \frac{\|\Vec{A}-\Vec{E}\|}{\|\Vec{A}-\Vec{D}\|}$
 \end{center}
 \begin{equation}
-    \theta = sin^-1\left(\frac{\|AE\|}{\|AD\|}\right)
+    \theta = \sin^-1\left(\frac{\|\Vec{A}-\Vec{E}\|}{\|\Vec{A}-\Vec{D}\|}\right)
 \label{eqntheta}
 \end{equation}
 \begin{equation}
-    \Vec{A} = \|AD\|\begin{pmatrix} cos \theta \\ sin \theta \end{pmatrix}
+    \Vec{A} = \|\Vec{A}-\Vec{D}\|\begin{pmatrix} cos \theta \\ sin \theta \end{pmatrix}
 \label{eqnA}
 \end{equation}
 Substituting $\|AE\|$ and $\|AD\|$ in (\ref*{eqntheta}) and (\ref*{eqnA})
@@ -119,7 +132,7 @@ Equation of line passing through AD:
 \end{center}
 Normal vector,
 \begin{center}
-    $\implies \Vec{n} = \begin{pmatrix} 8 \\ -10 \end{pmatrix}$
+    $\implies \Vec{n} = \begin{pmatrix} -8 \\ 10 \end{pmatrix}$
 \end{center}
 Equation of line passing through D with normal vector n is
 \begin{center}
